@@ -311,7 +311,7 @@ const Home = ({ navigation }) => {
                                 //fontFamily:'Cochin',
                                 fontSize:12,
                                 fontWeight:'900',
-                                marginBottom:6,
+                                marginBottom:10,
                                 }}>
                                 {step}/{steps}
                             </Text>
@@ -327,8 +327,8 @@ const Home = ({ navigation }) => {
 
                                 style={{
                                     height,
-                                    backgroundColor: 'green',
-                                    borderRadius: height,
+                                    backgroundColor: 'grey',
+                                    borderRadius: 50,
                                     overflow:'hidden',
                                 }}
                             >
