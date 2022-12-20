@@ -15,7 +15,7 @@ const asyncStoragePersistor = createAsyncStoragePersister({
 const client = createClient({
   persister: asyncStoragePersistor,
   storage: createStorage({
-    storage: noopStorage,
+    storage: noopStorage  ,
   }),
 })
 

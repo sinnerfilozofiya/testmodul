@@ -49,7 +49,7 @@ const App = () => {
 
 
                 {Tabs}
-                <Stack.Screen name="Home" component={Tabs} />
+                <Stack.Screen name="Homee" component={Tabs} />
 
                 <Stack.Screen name='Trash'
                     component={Trash}

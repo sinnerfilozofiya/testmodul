@@ -113,18 +113,14 @@ const CustomTabBar = (props) => {
 const Tabs = () => {
     return (
         <Tab.Navigator
-            tabBarOptions={{
-                showLabel: false,
-                style: {
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    backgroundColor: "transparent",
-                    elevation: 0
-                }
-            }}
-            tabBar={(props) => (
+            screenOptions={{
+
+                tabBarShowLabel: false,
+                tabBarStyle: {
+                paddingVertical: Platform.OS === 'ios' ? 20 : 0,
+                height: 78,
+            }
+          }}r={(props) => (
                 <CustomTabBar
                     props={props}
                 />
