@@ -6,7 +6,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { WagmiConfig, createClient, createStorage } from 'wagmi'
 import { noopStorage } from '@wagmi/core'
 import { createAsyncStoragePersister } from 'react-query/createAsyncStoragePersister'
-import Account from './components/Account'
+import Account from '../components/Account'
 
 const asyncStoragePersistor = createAsyncStoragePersister({
   storage: AsyncStorage,
@@ -19,11 +19,11 @@ const client = createClient({
   }),
 })
 
-export default function App() {
+export default function SignUp() {
   return (
     <WagmiConfig client={client}>
       <WalletConnectProvider
-        redirectUrl={'wmw://app'}
+        redirectUrl={'wmw://SignUp'}
         storageOptions= {{
           // @ts-expect-error: Internal
           asyncStorage: AsyncStorage,

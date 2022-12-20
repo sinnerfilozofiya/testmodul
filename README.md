@@ -1,5 +1,8 @@
-# wagmi + React Native example
+# ANKAxLABS Project Prototype 
 
-This example uses WalletConnect Modal to connect with Wagmi.
 
-<img src="./demo.gif" width="200" />
+## [Clicj here to vist our website](https://ankaxlabs.com/)
+
+
+
+
