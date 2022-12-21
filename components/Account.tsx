@@ -18,25 +18,24 @@ export default function Account() {
   const { disconnect } = useDisconnect()
 
   const { data: account } = useAccount()
-  const { data: balance } = useBalance({ addressOrName: account?.address })
+  const { data: balance } = useBalance({ addressOrName: account?.address, token: '0x95aD61b0a150d79219dCF64E1E6Cc01f0B64C4cE' })
 
   useEffect(() => {
-    if (connector?.accounts?.length && !account) {
+    if (connector && connector.accounts?.length && !account) {
       connect()
-    } else {
-      disconnect()
     }
   }, [connector])
 
   if (account) {
     return (
       <>
-        <Button title="Disconnect" onPress={() => connector?.killSession()} />
+        <Button title="Disconnect" onPress={() => {  disconnect()}} />
         <Text>Account address: {account?.address}</Text>
         <Text>Balance: {balance?.formatted} {balance?.symbol}</Text>
       </>
     )
   }
-
+else {
   return <Button title="Connect" onPress={() => connector?.connect()} />
+}
 }

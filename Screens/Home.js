@@ -16,8 +16,8 @@ import Trash from "./Trash";
 import Scan from "./Scan";
 import { Linking } from 'react-native'
 import { StatusBar } from "expo-status-bar";
-
-import { Animated , setWidth} from "react-native";
+import { useState } from "react";
+import { Animated, setWidth } from "react-native";
 
 const Home = ({ navigation }) => {
 
@@ -92,15 +92,16 @@ const Home = ({ navigation }) => {
 
 
         return (
-            <View style={{ flexDirection: 'row', 
-            marginVertical: SIZES.padding * 3,
-             justifyContent: 'center',
-              borderBottomWidth : 2, 
-              borderBottomColor : "black",
-               paddingBottom : 6,
-                borderRadius : 3,
+            <View style={{
+                flexDirection: 'row',
+                marginVertical: SIZES.padding * 3,
+                justifyContent: 'center',
+                borderBottomWidth: 2,
+                borderBottomColor: "black",
+                paddingBottom: 6,
+                borderRadius: 3,
 
-                }}>
+            }}>
 
                 <View style={{ flex: 1, flexDirection: "row" }}>
                     <Image source={require('../assets/splash.png')} resizeMethod='auto' style={{ width: '20%', height: '90%' }}></Image>
@@ -286,168 +287,130 @@ const Home = ({ navigation }) => {
                 </View>
             </TouchableOpacity>
         )
-//here imma add the consts of the progress bar
-                    const Progress =({step,steps,height})=>{
-                        const [width , setWidth]=React.useState(0);
-                        const animatedValue = React.useRef(new Animated.Value(-1000)).current;
-                        const reactive = React.useRef(new Animated.Value(-1000)).current;
+        //here imma add the consts of the progress bar
+        const Progress = ({ step, steps, height }) => {
+            const [width, setWidth] = React.useState(0);
+            const animatedValue = React.useRef(new Animated.Value(-1000)).current;
+            const reactive = React.useRef(new Animated.Value(-1000)).current;
 
-                        React.useEffect(() => {
-                            Animated.timing(animatedValue ,{
-                                toValue : reactive,
-                                duration : 300,
-                                useNativeDriver:true,
-                            }).start();
-                        },[]);
-                            
-                        React.useEffect(() =>{
-                            reactive.setValue(-width+(width * step)/steps);
-                        },[step,width])
-                  
+            React.useEffect(() => {
+                Animated.timing(animatedValue, {
+                    toValue: reactive,
+                    duration: 300,
+                    useNativeDriver: true,
+                }).start();
+            }, []);
 
-                        return(
-                            <>
-                            <Text style={{
-                                //fontFamily:'Cochin',
-                                fontSize:12,
-                                fontWeight:'900',
-                                marginBottom:10,
-                                }}>
-                                YOUR XP: {step}/{steps}
-                            </Text>
-                            <View
+            React.useEffect(() => {
+                reactive.setValue(-width + (width * step) / steps);
+            }, [step, width])
 
-                                onLayout={
-                                    (e) => {
-                                            const newWidth = e.nativeEvent.layout.width;
 
-                                            setWidth(newWidth);
-                                        }
-                                }
+            return (
+                <>
+                   
+                    <View
 
-                                style={{
-                                    height,
-                                    backgroundColor: 'white',
-                                    borderWidth:2,
-                                    borderRadius: 50,
-                                    overflow:'hidden',
-                                }}
-                            >
-                            <Animated.View
-                                style={{
-                                    height,
-                                    backgroundColor:  COLORS.emerald,
-                                    borderRadius: height,
-                                    overflow:'hidden',
-                                    width:'100%',
-                                    position:"absolute",
-                                    opacity:0.8,
-                                    left:0,
-                                    top:0,
-                                    transform : [
-                                        {
+                        onLayout={
+                            (e) => {
+                                const newWidth = e.nativeEvent.layout.width;
+
+                                setWidth(newWidth);
+                            }
+                        }
+                        
+                        style={{
+
+                            backgroundColor: 'white',
+                            borderWidth: 2,
+                            borderRadius: 50,
+                            overflow: 'hidden',
+                            height:30,
+                        }}
+                    >
+                       
+                        <Animated.View
+                            style={{
+                                
+                                height,
+                                backgroundColor: COLORS.emerald,
+                                borderRadius: height,
+                                overflow: 'hidden',
+                                width: '100%',
+                                height:'100%',
+                                position: "absolute",
+                                opacity: 0.5,
+                                left: 0,
+                                top: 0,
+                                transform: [
+                                    {
                                         translateX: animatedValue
                                     }
-                                    ],
-                                }}
+                                ],
+                            }}
                             
-                            />
-                            </View>
-                            </>
-                        )
 
-                    }
+                        />
+                         <Text style={{color:'black',fontWeight: 'bold',textAlign:'center'  }}> <Text style={{
+                        //fontFamily:'Cochin',
+                        fontSize: 12,
+                        fontWeight: '900',
+                        marginBottom: 10,
+                    }}>
+                        YOUR XP: {step}/{steps}
+                    </Text></Text>
+                    </View>
+                </>
+            )
 
-
-
-                    const Progress2 =({step,steps,height})=>{
-                        const [width , setWidth]=React.useState(0);
-                        const animatedValue = React.useRef(new Animated.Value(-1000)).current;
-                        const reactive = React.useRef(new Animated.Value(-1000)).current;
-                    
-                        React.useEffect(() => {
-                            Animated.timing(animatedValue ,{
-                                toValue : reactive,
-                                duration : 300,
-                                useNativeDriver:true,
-                            }).start();
-                        },[]);
-                            
-                        React.useEffect(() =>{
-                            reactive.setValue(-width+(width * step)/steps);
-                        },[step,width])
-                    
-                    
-                        return(
-                            <>
-                            <Text style={{
-                                //fontFamily:'Cochin',
-                                fontSize:12,
-                                fontWeight:'900',
-                                marginBottom:10,
-                                }}>
-                                YOUR LVL: {step}/{steps}
-                            </Text>
-                            <View
-                    
-                                onLayout={
-                                    (e) => {
-                                            const newWidth = e.nativeEvent.layout.width;
-                    
-                                            setWidth(newWidth);
-                                        }
-                                }
-                    
-                                style={{
-                                    height,
-                                    backgroundColor: 'white',
-                                    borderWidth:2,
-                                    borderRadius: 50,
-                                    overflow:'hidden',
-                                }}
-                            >
-                            <Animated.View
-                                style={{
-                                    height,
-                                    backgroundColor:  COLORS.purple,
-                                    borderRadius: height,
-                                    overflow:'hidden',
-                                    width:'100%',
-                                    position:"absolute",
-                                    opacity:0.6,
-                                    left:0,
-                                    top:0,
-                                    transform : [
-                                        {
-                                        translateX: animatedValue
-                                    }
-                                    ],
-                                }}
-                            
-                            />
-                            </View>
-                            </>
-                        )
-                    
-                    }
+        }
 
 
 
+        const Progress2 = ({ step, steps, height }) => {
+            const [width, setWidth] = React.useState(0);
+            const animatedValue = React.useRef(new Animated.Value(-1000)).current;
+            const reactive = React.useRef(new Animated.Value(-1000)).current;
+
+            React.useEffect(() => {
+                Animated.timing(animatedValue, {
+                    toValue: reactive,
+                    duration: 300,
+                    useNativeDriver: true,
+                }).start();
+            }, []);
+
+            React.useEffect(() => {
+                reactive.setValue(-width + (width * step) / steps);
+            }, [step, width])
 
 
+            return (
+                <>
+
+                        <Text style={{
+                            //fontFamily:'Cochin',
+                            fontSize: 25,
+                            fontWeight: '900',
+                            textAlign:'center',
+                            marginBottom:'5%'
+                        }}>
+                            LVL: {step}
+                        </Text>
 
 
+                </>
+            )
 
-
-
+        }
 
 
 
 
 
         //here its gonna be the step counter
-        
-        const [index,setIndex]=React.useState(0);
+
+        const [counter, setCounter] = useState(10)
 
         return (
             <FlatList
@@ -465,18 +428,22 @@ const Home = ({ navigation }) => {
 
 
                     <View>
-                        <Text style={{ ...FONTS.h3 ,marginTop:10}}>
+                        <Text style={{ ...FONTS.h3, marginTop: 10 }}>
                             Follow your progress
                         </Text>
-                    <View style={{ marginTop: '15%' }}>
-                        <StatusBar hidden />
-                        <Progress step={7} steps={10} height={20} />
-                    </View>
 
-                    <View style={{ marginTop:'3%' }}>
-                        <StatusBar hidden />
-                        <Progress2 step={9} steps={10} height={20} />
-                    </View>
+                        <View style={{ marginTop: '5%' }}>
+                            <StatusBar hidden />
+                            <Progress2 step={~~(counter/10)} steps={10} height={20} />
+                        </View>
+
+                        <View style={{ marginTop: '1%' }}>
+                            <StatusBar hidden />
+                            <Progress step={counter} steps={(~~(counter/10))*10} height={20} />
+                        </View>
+
+
+                        <Button onPress={() => { setCounter(counter + 1) }} title="fdasdasd" />
                     </View>
                 }
             />
@@ -487,10 +454,10 @@ const Home = ({ navigation }) => {
 
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.white }}>
             {renderPromos()}
-           
+
         </SafeAreaView>
     )
-    
+
 }
 
 export default Home;
