@@ -114,12 +114,12 @@ const Tabs = () => {
     return (
         <Tab.Navigator
             screenOptions={{
-
+                headerShown:false,
                 tabBarShowLabel: false,
                 tabBarStyle: {
                 paddingVertical: Platform.OS === 'ios' ? 20 : 0,
                 height: 78,
-            }
+            },
           }}r={(props) => (
                 <CustomTabBar
                     props={props}

@@ -5,6 +5,8 @@ import Trash from "./Trash";
 import Shop from "./Shop";
 import Dex from "./Dex";
 import Map from "./Map";
+import TierList from "./TierList";
+
 export {
     Home,
     Scan,
@@ -12,5 +14,6 @@ export {
     Trash,
     Shop,
     Dex,
-    Map
+    Map,
+    TierList
 };

@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { Home, SignUp } from "./Screens";
+import { Home, SignUp, TierList } from "./Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -42,7 +42,7 @@ const App = () => {
         <NavigationContainer theme={theme}>
             <Stack.Navigator
                 screenOptions={{
-                    headerShown: false
+                    headerShown: false,
                 }}
                 initialRouteName={'Home1'}
             >
@@ -53,6 +53,7 @@ const App = () => {
 
                 <Stack.Screen name='Trash'
                     component={Trash}
+
                     options={
                         {
                             headerShown: false,
@@ -94,7 +95,14 @@ const App = () => {
                     }></Stack.Screen>
 
 
+                <Stack.Screen name='Tier List'
+                    component={TierList}
+                    options={
+                        {
+                            headerShown: false,
 
+                        }
+                    }></Stack.Screen>
 
 
             </Stack.Navigator>

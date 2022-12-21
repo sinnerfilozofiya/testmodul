@@ -24,10 +24,10 @@ const Home = ({ navigation }) => {
     const featuresData = [
         {
             id: 1,
-            icon: icons.reload,
+            icon: icons.Ranking,
             color: COLORS.purple,
             backgroundColor: COLORS.lightpurple,
-            description: "Refresh"
+            description: "Tier List"
         },
         {
             id: 2,
@@ -313,7 +313,7 @@ const Home = ({ navigation }) => {
                                 fontWeight:'900',
                                 marginBottom:10,
                                 }}>
-                                {step}/{steps}
+                                YOUR XP: {step}/{steps}
                             </Text>
                             <View
 
@@ -327,7 +327,8 @@ const Home = ({ navigation }) => {
 
                                 style={{
                                     height,
-                                    backgroundColor: 'grey',
+                                    backgroundColor: 'white',
+                                    borderWidth:2,
                                     borderRadius: 50,
                                     overflow:'hidden',
                                 }}
@@ -335,11 +336,12 @@ const Home = ({ navigation }) => {
                             <Animated.View
                                 style={{
                                     height,
-                                    backgroundColor: 'purple',
+                                    backgroundColor:  COLORS.emerald,
                                     borderRadius: height,
                                     overflow:'hidden',
                                     width:'100%',
                                     position:"absolute",
+                                    opacity:0.8,
                                     left:0,
                                     top:0,
                                     transform : [
@@ -355,6 +357,93 @@ const Home = ({ navigation }) => {
                         )
 
                     }
+
+
+
+                    const Progress2 =({step,steps,height})=>{
+                        const [width , setWidth]=React.useState(0);
+                        const animatedValue = React.useRef(new Animated.Value(-1000)).current;
+                        const reactive = React.useRef(new Animated.Value(-1000)).current;
+                    
+                        React.useEffect(() => {
+                            Animated.timing(animatedValue ,{
+                                toValue : reactive,
+                                duration : 300,
+                                useNativeDriver:true,
+                            }).start();
+                        },[]);
+                            
+                        React.useEffect(() =>{
+                            reactive.setValue(-width+(width * step)/steps);
+                        },[step,width])
+                    
+                    
+                        return(
+                            <>
+                            <Text style={{
+                                //fontFamily:'Cochin',
+                                fontSize:12,
+                                fontWeight:'900',
+                                marginBottom:10,
+                                }}>
+                                YOUR LVL: {step}/{steps}
+                            </Text>
+                            <View
+                    
+                                onLayout={
+                                    (e) => {
+                                            const newWidth = e.nativeEvent.layout.width;
+                    
+                                            setWidth(newWidth);
+                                        }
+                                }
+                    
+                                style={{
+                                    height,
+                                    backgroundColor: 'white',
+                                    borderWidth:2,
+                                    borderRadius: 50,
+                                    overflow:'hidden',
+                                }}
+                            >
+                            <Animated.View
+                                style={{
+                                    height,
+                                    backgroundColor:  COLORS.purple,
+                                    borderRadius: height,
+                                    overflow:'hidden',
+                                    width:'100%',
+                                    position:"absolute",
+                                    opacity:0.6,
+                                    left:0,
+                                    top:0,
+                                    transform : [
+                                        {
+                                        translateX: animatedValue
+                                    }
+                                    ],
+                                }}
+                            
+                            />
+                            </View>
+                            </>
+                        )
+                    
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         //here its gonna be the step counter
         
@@ -381,7 +470,12 @@ const Home = ({ navigation }) => {
                         </Text>
                     <View style={{ marginTop: '15%' }}>
                         <StatusBar hidden />
-                        <Progress step={6} steps={10} height={20} />
+                        <Progress step={7} steps={10} height={20} />
+                    </View>
+
+                    <View style={{ marginTop:'3%' }}>
+                        <StatusBar hidden />
+                        <Progress2 step={9} steps={10} height={20} />
                     </View>
                     </View>
                 }

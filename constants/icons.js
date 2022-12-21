@@ -18,6 +18,7 @@ const user = require("../assets/icons/user.png");
 const wallet = require("../assets/icons/wallet.png");
 const location = require("../assets/icons/location.png");
 const Dex = require("../assets/icons/dex.png");
+const Ranking = require("../assets/icons/ranking.png");
 
 export default {
     back,
@@ -39,5 +40,6 @@ export default {
     user,
     wallet,
     location,
-    Dex
+    Dex,
+    Ranking,
 }
