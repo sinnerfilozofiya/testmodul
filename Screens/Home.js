@@ -308,7 +308,7 @@ const Home = ({ navigation }) => {
 
             return (
                 <>
-                   
+
                     <View
 
                         onLayout={
@@ -318,26 +318,26 @@ const Home = ({ navigation }) => {
                                 setWidth(newWidth);
                             }
                         }
-                        
+
                         style={{
 
                             backgroundColor: 'white',
                             borderWidth: 2,
                             borderRadius: 50,
                             overflow: 'hidden',
-                            height:30,
+                            height: 30,
                         }}
                     >
-                       
+
                         <Animated.View
                             style={{
-                                
+
                                 height,
                                 backgroundColor: COLORS.emerald,
                                 borderRadius: height,
                                 overflow: 'hidden',
                                 width: '100%',
-                                height:'100%',
+                                height: '100%',
                                 position: "absolute",
                                 opacity: 0.5,
                                 left: 0,
@@ -348,17 +348,17 @@ const Home = ({ navigation }) => {
                                     }
                                 ],
                             }}
-                            
+
 
                         />
-                         <Text style={{color:'black',fontWeight: 'bold',textAlign:'center'  }}> <Text style={{
-                        //fontFamily:'Cochin',
-                        fontSize: 12,
-                        fontWeight: '900',
-                        marginBottom: 10,
-                    }}>
-                        YOUR XP: {step}/{steps}
-                    </Text></Text>
+                        <Text style={{ color: 'black', fontWeight: 'bold', textAlign: 'center' }}> <Text style={{
+                            //fontFamily:'Cochin',
+                            fontSize: 12,
+                            fontWeight: '900',
+                            marginBottom: 10,
+                        }}>
+                            YOUR XP: {step}/{steps}
+                        </Text></Text>
                     </View>
                 </>
             )
@@ -388,15 +388,15 @@ const Home = ({ navigation }) => {
             return (
                 <>
 
-                        <Text style={{
-                            //fontFamily:'Cochin',
-                            fontSize: 25,
-                            fontWeight: '900',
-                            textAlign:'center',
-                            marginBottom:'5%'
-                        }}>
-                            LVL: {step}
-                        </Text>
+                    <Text style={{
+                        //fontFamily:'Cochin',
+                        fontSize: 25,
+                        fontWeight: '900',
+                        textAlign: 'center',
+                        marginBottom: '5%'
+                    }}>
+                        LVL: {step}
+                    </Text>
 
 
                 </>
@@ -404,13 +404,24 @@ const Home = ({ navigation }) => {
 
         }
 
+        const levelXP = () => {
+            XPset(XpCounter + 1)
+
+            if ((LvlCounter * 10 - XpCounter) == 1) {
+                XPset(0)
+                LVLset(LvlCounter + 1)
+                console.log(LvlCounter)
+            }
+        }
 
 
 
 
         //here its gonna be the step counter
 
-        const [counter, setCounter] = useState(10)
+        const [XpCounter, XPset] = useState(1)
+        const [LvlCounter, LVLset] = useState(1)
+
 
         return (
             <FlatList
@@ -432,20 +443,35 @@ const Home = ({ navigation }) => {
                             Follow your progress
                         </Text>
 
+
+
                         <View style={{ marginTop: '5%' }}>
                             <StatusBar hidden />
-                            <Progress2 step={~~(counter/10)} steps={10} height={20} />
+                            <Progress2 step={LvlCounter} steps={10} height={20} />
                         </View>
+
+
 
                         <View style={{ marginTop: '1%' }}>
                             <StatusBar hidden />
-                            <Progress step={counter} steps={(~~(counter/10))*10} height={20} />
+                            <Progress step={XpCounter % (LvlCounter * 10)} steps={LvlCounter * 10} height={20} />
                         </View>
 
 
-                        <Button onPress={() => { setCounter(counter + 1) }} title="fdasdasd" />
+                    
+                        <TouchableOpacity
+                         onPress={levelXP} title="fdasdasd"
+                            style={{ borderRadius:30 , alignSelf:'center',alignItems:'center',   justifyContent : 'center',
+                            alignItems : "center",marginTop:40,borderWidth:2,height:50,width:100,}}
+                        >
+                            <Text style={{ color: "black", fontWeight: "600",alignSelf:'center' }}>GAIN XP</Text>
+                        </TouchableOpacity>
+
                     </View>
+
+
                 }
+
             />
         )
     }
