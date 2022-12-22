@@ -419,7 +419,7 @@ const Home = ({ navigation }) => {
 
         //here its gonna be the step counter
 
-        const [XpCounter, XPset] = useState(1)
+        const [XpCounter, XPset] = useState(0)
         const [LvlCounter, LVLset] = useState(1)
 
 

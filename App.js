@@ -68,7 +68,7 @@ const App = () => {
                     component={SignUp}
                     options={
                         {
-                            headerShown: false,
+                            headerShown: true,
 
                         }
                     }></Stack.Screen>

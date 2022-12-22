@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState, useRef } from 'react';
-import MapView from 'react-native-maps';
+import MapView,{ PROVIDER_GOOGLE } from 'react-native-maps';
 import { StyleSheet, View, Platform, Dimensions ,Image} from 'react-native';
 import { Marker } from 'react-native-maps';
 import { Linking } from 'react-native'
@@ -22,6 +22,7 @@ export default function Map() {
         }}>
         <View style={styles.container}>
             <MapView style={styles.map}
+            provider={PROVIDER_GOOGLE}
                 initialRegion={{
                     latitude: 39.781929831582154,
                     longitude: 32.820331917893114,
@@ -77,6 +78,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     map: {
+        flex: 1,
         width: '75%',
         height: '85%',
         alignItems: 'center',
