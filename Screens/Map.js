@@ -1,10 +1,8 @@
 import React from 'react';
 import { useEffect, useState, useRef } from 'react';
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import MapView from 'react-native-maps';
 import { StyleSheet, View, Platform, Dimensions ,Image} from 'react-native';
 import { Marker } from 'react-native-maps';
-import * as Location from 'expo-location';
-import * as permissions from 'expo-permissions'
 import { Linking } from 'react-native'
 import {  icons } from "../constants"
 
@@ -24,14 +22,12 @@ export default function Map() {
         }}>
         <View style={styles.container}>
             <MapView style={styles.map}
-                provider={PROVIDER_GOOGLE}
                 initialRegion={{
                     latitude: 39.781929831582154,
                     longitude: 32.820331917893114,
                     latitudeDelta: 0.01,
                     longitudeDelta: 0.01,
                 }}
-                showsUserLocation={true}
             >
 
                 <Marker

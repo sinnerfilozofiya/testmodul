@@ -131,7 +131,7 @@ function renderPaymentMethods() {
                 backgroundColor: COLORS.white
             }}
         >
-            <Text style={{ ...FONTS.h4 }}>Another payment methods</Text>
+            <Text style={{ ...FONTS.h4 }}>Select sync method</Text>
 
             <View
                 style={{
@@ -146,7 +146,7 @@ function renderPaymentMethods() {
                         flexDirection: 'row',
                         alignItems: 'center'
                     }}
-                    onPress={() => console.log("Phone Number")}
+                    onPress={() => console.log("serial number")}
                 >
                     <View
                         style={{
@@ -168,7 +168,7 @@ function renderPaymentMethods() {
                             }}
                         />
                     </View>
-                    <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>Phone Number</Text>
+                    <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>Serial number</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
@@ -177,7 +177,7 @@ function renderPaymentMethods() {
                         alignItems: 'center',
                         marginLeft: SIZES.padding * 2
                     }}
-                    onPress={() => console.log("Barcode")}
+                    onPress={() => console.log("QR")}
                 >
                     <View
                         style={{
@@ -199,7 +199,7 @@ function renderPaymentMethods() {
                             }}
                         />
                     </View>
-                    <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>Barcode</Text>
+                    <Text style={{ marginLeft: SIZES.padding, ...FONTS.body4 }}>QR</Text>
                 </TouchableOpacity>
             </View>
         </View>
