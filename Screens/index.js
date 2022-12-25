@@ -6,7 +6,7 @@ import Shop from "./Shop";
 import Dex from "./Dex";
 import Map from "./Map";
 import TierList from "./TierList";
-
+import Serialcode from "./serialcode";
 export {
     Home,
     Scan,
@@ -15,5 +15,6 @@ export {
     Shop,
     Dex,
     Map,
-    TierList
+    TierList,
+    Serialcode,
 };

@@ -14,8 +14,7 @@ import { isIphoneX } from 'react-native-iphone-x-helper'
 
 import { Home, Scan,Shop } from "../Screens"
 import { COLORS, icons } from "../constants"
-import Trash from "../Screens/Trash";
-import SignUp from "../Screens";
+
 const Tab = createBottomTabNavigator()
 
 const TabBarCustomButton = ({ accessibilityLabel, accessibilityState, children, onPress }) => {

@@ -1,8 +1,19 @@
-import React, { useState, useEffect,useContext } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  Image,
+  FlatList,
+  TouchableOpacity,
+  StyleSheet,
+  Button,
+} from "react-native"
+import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import serialcode from './serialcode';
 
-export default function Scan({navigation}) {
+export default function Scan({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Not yet scanned')
@@ -54,8 +65,38 @@ export default function Scan({navigation}) {
       {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
       {scanned && <Button title={'Start'} onPress={() => {
         navigation.navigate('Trash')
-      }} color = '#54B049'></Button>}
-
+      }} color='#54B049'></Button>}
+      <View>
+        <TouchableOpacity
+          style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center' }}
+          onPress={() => {
+            navigation.navigate('Serial code')
+        }}
+        >
+          <View
+            style={{
+              height: 50,
+              width: 50,
+              marginBottom: 5,
+              borderRadius: 20,
+              backgroundColor: COLORS.lightpurple,
+              alignItems: 'center',
+              justifyContent: 'center'
+            }}
+          >
+            <Image
+              source={icons.phone}
+              resizeMode="contain"
+              style={{
+                height: 20,
+                width: 20,
+                tintColor: COLORS.purple
+              }}
+            />
+          </View>
+          <Text style={{ textAlign: 'center', flexWrap: 'wrap', ...FONTS.body4 }}>serial code</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }
