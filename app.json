@@ -22,7 +22,15 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.example.greener"
     },
+    
+      
+    
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyABFtYkIdfKXzO98AR6iipwOhv1kJfKd88"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

@@ -1,19 +1,16 @@
 import React from 'react'
 import {
-    SafeAreaView,
+
     View,
     Text,
-    Image,
-    FlatList,
+
     TouchableOpacity,
     TextInput
 
 } from "react-native"
 import { StyleSheet } from 'react-native'
-import Scan from './Scan'
 import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 import { useState } from 'react';
-
 
 export default function Serialcode({ navigation }) {
     const [enteredcode, setenteredcode] = useState('');
