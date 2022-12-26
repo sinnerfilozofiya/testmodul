@@ -11,6 +11,7 @@ import {
 import { StyleSheet } from 'react-native'
 import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 import { useState } from 'react';
+import { RNCamera } from 'react-native-camera';
 
 export default function Serialcode({ navigation }) {
     const [enteredcode, setenteredcode] = useState('');
@@ -23,7 +24,31 @@ export default function Serialcode({ navigation }) {
         props.onAddGoal(enteredcode);
         setenteredcode('');
     }
+
+
+
+
+
+    const [flash, setFlash] = useState(RNCamera.Constants.FlashMode.off);
+
+    const toggleFlash = () => {
+      if (flash === RNCamera.Constants.FlashMode.off) {
+        setFlash(RNCamera.Constants.FlashMode.on);
+      } else {
+        setFlash(RNCamera.Constants.FlashMode.off);
+      }
+    };
+
+
+
+
+
+
+
+
+
     return (
+        
         <View
             style={{
                 marginTop: '40%',
@@ -68,12 +93,14 @@ export default function Serialcode({ navigation }) {
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
+                
                 <TouchableOpacity style={trashStyle.Button} onPress={() => {
-                    navigation.navigate("Scan")
+                    //navigation.navigate("Scan");
+                    toggleFlash;
 
 
                 }}>
-                    <Text style={{ color: "black", fontWeight: "600" }}>back to QR scan</Text>
+                    <Text style={{ color: "black", fontWeight: "600" }}>flashlight??</Text>
                 </TouchableOpacity>
             </View>
         </View>
