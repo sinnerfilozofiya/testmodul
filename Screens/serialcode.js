@@ -20,7 +20,7 @@ export default function Serialcode({ navigation }) {
     function codehandel(enteredtext) {
         setenteredcode(enteredtext);
     }
-    function submit(){
+    function submit() {
         props.onAddGoal(enteredcode);
         setenteredcode('');
     }
@@ -29,13 +29,15 @@ export default function Serialcode({ navigation }) {
 
 
 
-    const [flash, setFlash] = useState(RNCamera.Constants.FlashMode.off);
+    const [flashOn, setFlashOn] = useState(false);
 
     const toggleFlash = () => {
-      if (flash === RNCamera.Constants.FlashMode.off) {
-        setFlash(RNCamera.Constants.FlashMode.on);
+      if (flashOn) {
+        (RNCamera.Constants.FlashMode.off);
+        setFlashOn(false);
       } else {
-        setFlash(RNCamera.Constants.FlashMode.off);
+        (RNCamera.Constants.FlashMode.torch);
+        setFlashOn(true);
       }
     };
 
@@ -48,7 +50,7 @@ export default function Serialcode({ navigation }) {
 
 
     return (
-        
+
         <View
             style={{
                 marginTop: '40%',
@@ -77,14 +79,14 @@ export default function Serialcode({ navigation }) {
                     value={enteredcode}
 
                 />
-                <View style={{justifyContent:'center', alignContent:'center',alignItems:'center'}}>
-                <TouchableOpacity style={trashStyle.Button} onPress={() => {
-                    console.log(enteredcode); submit;
+                <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
+                    <TouchableOpacity style={trashStyle.Button} onPress={() => {
+                        console.log(enteredcode); submit;
 
 
-                }}>
-                    <Text style={{ color: "black", fontWeight: "600" }}>submit</Text>
-                </TouchableOpacity>
+                    }}>
+                        <Text style={{ color: "black", fontWeight: "600" }}>submit</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
             <View style={{
@@ -93,14 +95,10 @@ export default function Serialcode({ navigation }) {
                 justifyContent: 'center',
                 alignItems: 'center'
             }}>
-                
-                <TouchableOpacity style={trashStyle.Button} onPress={() => {
-                    //navigation.navigate("Scan");
-                    toggleFlash;
+               
 
-
-                }}>
-                    <Text style={{ color: "black", fontWeight: "600" }}>flashlight??</Text>
+                <TouchableOpacity style={trashStyle.Button} onPress={toggleFlash} >
+                    <Text style={{ color: "black", fontWeight: "600" }}>{flashOn ? 'Turn off flashlight' : 'Turn on flashlight'}</Text>
                 </TouchableOpacity>
             </View>
         </View>
