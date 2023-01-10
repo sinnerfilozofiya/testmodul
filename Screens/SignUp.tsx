@@ -7,7 +7,6 @@ import { WagmiConfig, createClient, createStorage } from 'wagmi'
 import { noopStorage } from '@wagmi/core'
 import { createAsyncStoragePersister } from 'react-query/createAsyncStoragePersister'
 import Account from '../components/Account'
-
 const asyncStoragePersistor = createAsyncStoragePersister({
   storage: AsyncStorage,
 })
@@ -18,6 +17,7 @@ const client = createClient({
     storage: noopStorage  ,
   }),
 })
+
 
 export default function SignUp() {
   return (

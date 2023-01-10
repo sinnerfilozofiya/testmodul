@@ -10,9 +10,6 @@ import {
   Button,
   Modal,
   TextInput,
-  KeyboardAvoidingView,
-  Keyboard,
-
 } from "react-native"
 import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 import { BarCodeScanner } from 'expo-barcode-scanner';
@@ -21,16 +18,10 @@ export default function Scan({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   const [text, setText] = useState('Not yet scanned')
-
-
+  const [isSerial, setSerial] = useState(false)
 
   const [modalVisible, setModalVisible] = useState(false);
-  const [mainOpacity, setOpaticity] = useState('rgba(0,0,0,0)')
-
-
-
   const [enteredcode, setenteredcode] = useState('');
-
 
   function codehandel(enteredtext) {
     setenteredcode(enteredtext);
@@ -39,8 +30,6 @@ export default function Scan({ navigation }) {
     props.onAddGoal(enteredcode);
     setenteredcode('');
   }
-
-
 
   const askForCameraPermission = () => {
     (async () => {
@@ -56,8 +45,6 @@ export default function Scan({ navigation }) {
 
   // What happens when we scan the bar code
   const handleBarCodeScanned = ({ type, data }) => {
-    if (modalVisible)
-      return;
     setScanned(true);
     setText(data)
     console.log('Type: ' + type + '\nData: ' + data)
@@ -78,39 +65,18 @@ export default function Scan({ navigation }) {
       </View>)
   }
 
-  // Return the View
-  return (
-
-    <View style={{
-      alignSelf: 'center',
-      height: '100%',
-      width: '100%',
-      backgroundColor: `${mainOpacity}`,
-
-      alignItems: 'center',
-      justifyContent: 'center',
-      flex: 0
-
-    }}>
-
-    
-
-      <Modal transparent={true} visible={modalVisible}>
-        <KeyboardAvoidingView
-          behavior='height'
-          style={{ marginBottom: 0, marginHorizontal: -10 }}
-        // enabled={true}
-        >
-          <View style={styles.modalComp}>
+  const serialCodeScreen = 
+      <View>
+        <View style={styles.modalComp}>
             <View
               style={{
-                // marginTop: '40%',
-                // marginHorizontal: SIZES.padding * 3,
-                // height: '50%'
+                marginTop: '40%',
+                marginHorizontal: SIZES.padding * 3,
+                height: '50%'
               }}
             >
-
-              <View >
+              {/* Full Name */}
+              <View style={{ marginTop: SIZES.padding * 3 }}>
                 <Text style={{ color: COLORS.black, ...FONTS.body3 }}>Enter trash can serial number  :</Text>
                 <TextInput
                   style={{
@@ -131,7 +97,7 @@ export default function Scan({ navigation }) {
                   value={enteredcode}
 
                 />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-around', alignContent: 'center', alignItems: 'center' }}>
+                <View style={{ justifyContent: 'center', alignContent: 'center', alignItems: 'center' }}>
                   <TouchableOpacity style={styles.Button} onPress={() => {
                     console.log(enteredcode); submit;
 
@@ -139,48 +105,45 @@ export default function Scan({ navigation }) {
                   }}>
                     <Text style={{ color: "black", fontWeight: "600" }}>submit</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={styles.Button}
-
-                    onPress={() => {
-                      setModalVisible(!modalVisible)
-                      setOpaticity('rgba(0,0,0,0)')
-                    }
-                    }
-                  >
-
-                    <Text style={{ color: "black", fontWeight: "600" }}>close</Text>
-                  </TouchableOpacity>
                 </View>
               </View>
+              <View style={{
+                height: '40%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}>
 
+                <TouchableOpacity style={styles.Button} onPress={() => setSerial(false)} >
+                  <Text style={{ color: "black", fontWeight: "600" }}>Persian People fuck german</Text>
+                </TouchableOpacity>
+
+              </View>
             </View>
-          </View>
-        </KeyboardAvoidingView>
-      </Modal>
+        </View>
 
-      <View>
+      </View>
+  
+
+  const cameraScreen = 
+
+      <View  >
         <View style={styles.barcodebox}>
           <BarCodeScanner
-            onBarCodeScanned={scanned && modalVisible ? undefined : handleBarCodeScanned}
+            onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
             style={{ height: 400, width: 400 }} />
         </View>
         <Text style={styles.maintext}>{text}</Text>
 
-        {scanned && !modalVisible && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
-        {scanned && !modalVisible && <Button title={'Start'} onPress={() => {
+        {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
+        {scanned && <Button title={'Start'} onPress={() => {
           navigation.navigate('Trash')
         }} color='#54B049'></Button>}
-
 
         <View>
           <TouchableOpacity
             style={{ marginBottom: SIZES.padding * 2, width: 60, alignItems: 'center' }}
-            onPress={() => {
-              setModalVisible(true)
-              setOpaticity('rgba(0,0,0,0.5)')
-
-            }
-            }
+            onPress={() => setSerial(true)}
           /////       this button will pop up the modal screen
           >
             <View
@@ -209,45 +172,57 @@ export default function Scan({ navigation }) {
         </View>
       </View>
 
+  // Return the View
+  return (
+    <View style={styles.container}>
+        {cameraScreen}
+        {isSerial ? serialCodeScreen : null}
     </View>
   );
-}
+
+  }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   maintext: {
     fontSize: 16,
     margin: 20,
-    alignSelf: "center"
   },
   barcodebox: {
     alignItems: 'center',
+    
     justifyContent: 'center',
     height: 400,
-    width: 299,
+    width: 300,
     overflow: 'hidden',
     borderRadius: 30,
-    backgroundColor: 'tomato'
+    backgroundColor: 'tomato',
+    position : "absolute",
+    zIndex : 0
   },
   Button: {
     backgroundColor: '#54B049',
     width: '35%',
-    height: '50%',
+    height: '30%',
     justifyContent: 'center',
     alignItems: "center",
     borderRadius: 6,
     color: '#141823',
-
+    marginTop: 15,
   },
 
   modalComp: {
-    height: '60%',
-    display: "flex",
-    justifyContent: 'center',
-    alignItems: "center",
-    width: "80%",
-    backgroundColor: 'white',
-    borderRadius: 10,
+    height: '80%',
+    backgroundColor: 'red',
+    width: "100%",
+    position : 'relative',
     alignSelf: 'center',
-    marginTop: '30%'
+    zIndex : 1
+    
   }
 }); 

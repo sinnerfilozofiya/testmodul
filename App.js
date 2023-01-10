@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { Home, Scan, Serialcode, serialcode, SignUp, TierList } from "./Screens";
+import { Home, Scan,SignUp, TierList } from "./Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -44,6 +44,7 @@ const App = () => {
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
+                // tabBarHideOnKeyboard: true,
                 }}
                 initialRouteName={'Home1'}
             >
@@ -107,14 +108,7 @@ const App = () => {
                         }
                     }></Stack.Screen>
 
-                <Stack.Screen name='Serial code'
-                    component={Serialcode}
-                    options={
-                        {
-                            headerShown: false,
-
-                        }
-                    }></Stack.Screen>
+    
 
 
 

@@ -79,11 +79,13 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         borderRadius: 20,
         overflow: 'hidden',
+        height: '75%',
+
     },
     map: {
         flex: 1,
         width: '75%',
-        height: '85%',
+        height: '65%',
         alignItems: 'center',
         justifyContent: 'center',
         height: 650,

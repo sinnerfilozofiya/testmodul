@@ -14,6 +14,7 @@ import {
   Keyboard,
 
 } from "react-native"
+import {RNCamera} from 'react-native-camera'
 import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 import { BarCodeScanner } from 'expo-barcode-scanner';
 
@@ -93,7 +94,10 @@ export default function Scan({ navigation }) {
 
     }}>
 
-    
+      <RNCamera
+        type={RNCamera.Constants.Type.back}
+        flashMode={RNCamera.Constants.FlashMode.on}
+      />
 
       <Modal transparent={true} visible={modalVisible}>
         <KeyboardAvoidingView

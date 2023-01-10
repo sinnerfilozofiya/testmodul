@@ -1,6 +1,7 @@
 {
   "expo": {
     "scheme": "wmw",
+    
     "name": "ANKAxLABS",
     "slug": "ANKAxLABS",
     "version": "1.0.0",
@@ -22,10 +23,8 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.example.greener"
     },
-    
-      
-    
     "android": {
+      "softwareKeyboardLayoutMode": "pan",
       "config": {
         "googleMaps": {
           "apiKey": "AIzaSyABFtYkIdfKXzO98AR6iipwOhv1kJfKd88"
@@ -39,6 +38,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "826942b2-e8c8-4a65-8dc0-212a74b4d967"
+      }
     }
   }
 }

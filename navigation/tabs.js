@@ -4,15 +4,16 @@ import {
     Image,
     TouchableOpacity,
     StyleSheet,
-    requireNativeComponent
+    requireNativeComponent,
+    KeyboardAvoidingView
 } from "react-native";
-import { createStackNavigator ,createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
+import { createStackNavigator, createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs"
 import Svg, {
     Path
 } from 'react-native-svg'
 import { isIphoneX } from 'react-native-iphone-x-helper'
 
-import { Home, Scan,Shop } from "../Screens"
+import { Home, Scan, Shop } from "../Screens"
 import { COLORS, icons } from "../constants"
 
 const Tab = createBottomTabNavigator()
@@ -110,94 +111,100 @@ const CustomTabBar = (props) => {
 
 const Tabs = () => {
     return (
-        <Tab.Navigator
-            screenOptions={{
-                headerShown:false,
-                tabBarShowLabel: false,
-                tabBarStyle: {
-                paddingVertical: Platform.OS === 'ios' ? 20 : 0,
-                height: 78,
-            },
-          }}r={(props) => (
-                <CustomTabBar
-                    props={props}
+
+            <Tab.Navigator
+                
+                screenOptions={{
+                    headerShown: false,
+                   // tabBarHideOnKeyboard: true,
+                    tabBarShowLabel: false,
+                    tabBarStyle: {
+                        paddingVertical: Platform.OS === 'ios' ? 20 : 0,
+                        height: 78,
+
+                    },
+                    
+                }} r={(props) => (
+                    <CustomTabBar
+                        props={props}
+                    />
+                )}
+            >
+                <Tab.Screen
+                    name="Home"
+                    component={Home}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <Image
+                                source={icons.more}
+                                resizeMode="contain"
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? COLORS.white : COLORS.secondary
+                                }}
+                            />
+                        ),
+                        tabBarButton: (props) => (
+                            <TabBarCustomButton
+                                {...props}
+                            />
+                        )
+                    }}
                 />
-            )}
-        >
-            <Tab.Screen
-                name="Home"
-                component={Home}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={icons.more}
-                            resizeMode="contain"
-                            style={{
-                                width: 25,
-                                height: 25,
-                                tintColor: focused ? COLORS.white : COLORS.secondary
-                            }}
-                        />
-                    ),
-                    tabBarButton: (props) => (
-                        <TabBarCustomButton
-                            {...props}
-                        />
-                    )
-                }}
-            />
-                  <Tab.Screen
-                name="Scan"
-                component={Scan}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={icons.scan}
-                            resizeMode="contain"
-                            style={{
-                                width: 25,
-                                height: 25,
-                                tintColor: focused ? COLORS.white : COLORS.secondary
-                            }}
-                        />
-                    ),
-                    tabBarButton: (props) => (
-                        <TabBarCustomButton
-                            {...props}
-                        />
-                    )
-                }}
-            />
+                <Tab.Screen
+                    name="Scan"
+                    component={Scan}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <Image
+                                source={icons.scan}
+                                resizeMode="contain"
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? COLORS.white : COLORS.secondary
+                                }}
+                            />
+                        ),
+                        tabBarButton: (props) => (
+                            <TabBarCustomButton
+                                {...props}
+                            />
+                        )
+                    }}
+                />
 
                 <Tab.Screen
-                name="Shop"
-                component={Shop}
-                options={{
-                    tabBarIcon: ({ focused }) => (
-                        <Image
-                            source={icons.bill}
-                            resizeMode="contain"
-                            style={{
-                                width: 25,
-                                height: 25,
-                                tintColor: focused ? COLORS.white : COLORS.secondary
-                            }}
-                        />
-                    ),
-                    tabBarButton: (props) => (
-                        <TabBarCustomButton
-                            {...props}
-                        />
-                    )
-                }}
-            />
+                    name="Shop"
+                    component={Shop}
+                    options={{
+                        tabBarIcon: ({ focused }) => (
+                            <Image
+                                source={icons.bill}
+                                resizeMode="contain"
+                                style={{
+                                    width: 25,
+                                    height: 25,
+                                    tintColor: focused ? COLORS.white : COLORS.secondary
+                                }}
+                            />
+                        ),
+                        tabBarButton: (props) => (
+                            <TabBarCustomButton
+                                {...props}
+                            />
+                        )
+                    }}
+                />
 
 
-      
-            
 
 
-        </Tab.Navigator>
+
+
+            </Tab.Navigator>
+
     )
 }
 
