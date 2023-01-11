@@ -6,6 +6,7 @@ import Shop from "./Shop";
 import Dex from "./Dex";
 import Map from "./Map";
 import TierList from "./TierList";
+import Dumdum from "./dumdum";
 export {
     Home,
     Scan,
@@ -15,4 +16,5 @@ export {
     Dex,
     Map,
     TierList,
+    Dumdum,
 };

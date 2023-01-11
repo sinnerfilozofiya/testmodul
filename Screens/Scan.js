@@ -16,6 +16,7 @@ import {
 } from "react-native"
 import { COLORS, SIZES, FONTS, icons, images } from "../constants"
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { Dumdum } from '.';
 
 export default function Scan({ navigation }) {
   const [hasPermission, setHasPermission] = useState(null);
@@ -31,6 +32,11 @@ export default function Scan({ navigation }) {
 
   const [enteredcode, setenteredcode] = useState('');
 
+  const barcodeBox = <View style={styles.barcodebox}>
+    <BarCodeScanner
+      onBarCodeScanned={scanned && modalVisible ? undefined : handleBarCodeScanned}
+      style={{ height: 400, width: 400 }} />
+  </View>
 
   function codehandel(enteredtext) {
     setenteredcode(enteredtext);
@@ -39,8 +45,6 @@ export default function Scan({ navigation }) {
     props.onAddGoal(enteredcode);
     setenteredcode('');
   }
-
-
 
   const askForCameraPermission = () => {
     (async () => {
@@ -64,12 +68,10 @@ export default function Scan({ navigation }) {
   };
 
   // Check permissions and return the screens
-  if (hasPermission === null) {
-    return (
-      <View style={styles.container}>
-        <Text>Requesting for camera permission</Text>
-      </View>)
-  }
+  // if (hasPermission === null) {
+  //   return (
+  //     <Dumdum></Dumdum>)
+  // }
   if (hasPermission === false) {
     return (
       <View style={styles.container}>
@@ -78,9 +80,7 @@ export default function Scan({ navigation }) {
       </View>)
   }
 
-  // Return the View
   return (
-
     <View style={{
       alignSelf: 'center',
       height: '100%',
@@ -92,8 +92,6 @@ export default function Scan({ navigation }) {
       flex: 0
 
     }}>
-
-    
 
       <Modal transparent={true} visible={modalVisible}>
         <KeyboardAvoidingView
@@ -159,11 +157,9 @@ export default function Scan({ navigation }) {
       </Modal>
 
       <View>
-        <View style={styles.barcodebox}>
-          <BarCodeScanner
-            onBarCodeScanned={scanned && modalVisible ? undefined : handleBarCodeScanned}
-            style={{ height: 400, width: 400 }} />
-        </View>
+
+        {hasPermission === null ? <Dumdum></Dumdum> : barcodeBox}
+
         <Text style={styles.maintext}>{text}</Text>
 
         {scanned && !modalVisible && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
@@ -206,11 +202,20 @@ export default function Scan({ navigation }) {
             </View>
             <Text style={{ textAlign: 'center', flexWrap: 'wrap', ...FONTS.body4 }}>serial code</Text>
           </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => {
+            setHasPermission(!hasPermission)
+          }} >
+            <Text>dum dum</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
     </View>
-  );
+  )
+
+  // Return the View
+
 }
 
 const styles = StyleSheet.create({

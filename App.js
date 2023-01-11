@@ -8,7 +8,7 @@
 
 import React from 'react';
 
-import { Home, Scan,SignUp, TierList } from "./Screens";
+import { Home, Scan, SignUp, TierList } from "./Screens";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
@@ -17,6 +17,7 @@ import Trash from './Screens/Trash';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Dex from './Screens/Dex';
 import Map from './Screens/Map';
+import dumdum from './Screens/dumdum';
 
 const theme = {
     ...DefaultTheme,
@@ -44,7 +45,7 @@ const App = () => {
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
-                // tabBarHideOnKeyboard: true,
+                    // tabBarHideOnKeyboard: true,
                 }}
                 initialRouteName={'Home1'}
             >
@@ -63,9 +64,18 @@ const App = () => {
                         }
                     }></Stack.Screen>
 
+                <Stack.Screen name='Loading'
+                    component={dumdum}
+
+                    options={
+                        {
+                            headerShown: false,
+
+                        }
+                    }></Stack.Screen>
 
 
-          
+
                 {/*  down below is screen for wallet connect no need for log in at entry*/}
 
                 <Stack.Screen name='SignUp'
@@ -108,7 +118,7 @@ const App = () => {
                         }
                     }></Stack.Screen>
 
-    
+
 
 
 

@@ -5,7 +5,7 @@ import WalletConnectProvider from '@walletconnect/react-native-dapp'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { WagmiConfig, createClient, createStorage } from 'wagmi'
 import { noopStorage } from '@wagmi/core'
-import { createAsyncStoragePersister } from 'react-query/createAsyncStoragePersister'
+import { createAsyncStoragePersister } from '@tanstack/query-async-storage-persister'
 import Account from '../components/Account'
 const asyncStoragePersistor = createAsyncStoragePersister({
   storage: AsyncStorage,
